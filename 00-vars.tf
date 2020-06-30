@@ -54,6 +54,13 @@ variable "private_subnets" {
       "cidr" : "172.16.1.0/24"
     },
     {
+      "name" : "vSAN",
+      "nat" : false,
+      "vsphere_service_type" : "vsan",
+      "routable" : false,
+      "cidr" : "172.16.2.0/24"
+    },
+    {
       "name" : "VM Private Net",
       "nat" : true,
       "vsphere_service_type" : null,
@@ -65,8 +72,15 @@ variable "private_subnets" {
 }
 
 variable "public_subnets" {
-  default = [
-  ]
+ default = [
+      {
+      "name" : "VM Public Net",
+      "nat" : false,
+      "vsphere_service_type" : null,
+      "routable" : true,
+      "ip_count" : 4
+    }
+ ]
 }
 
 variable "router_hostname" {
@@ -86,7 +100,7 @@ variable "esxi_size" {
 }
 
 variable "facility" {
-  default = "ewr1"
+  default = "sjc1"
 }
 
 variable "router_os" {
